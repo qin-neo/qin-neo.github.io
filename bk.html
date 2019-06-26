@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+ <title>行业</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<script>
+window.onload = function() {
+  var ban_kuai = ['BK04751','BK04861','BK04811','BK04201','BK04651','BK04251','BK04641','BK04511','BK04821','BK04731','BK04331','BK04561','BK04211','BK05381','BK04281','BK04741',];
+  for (var iii=0;iii<ban_kuai.length;iii++) {
+    var tmp_e = document.createElement('a');
+    document.body.appendChild(tmp_e);
+    tmp_e.target = '_blank';
+    tmp_e.href = 'http://quote.eastmoney.com/web/'+ban_kuai[iii]+'.html';
+    tmp_e.innerHTML='<img src="http://pifm3.eastmoney.com/EM_Finance2014PictureInterface/Index.aspx?UnitWidth=-6&imageType=KXL&EF=&Formula=RSI&type=&token=44c9d251add88e27b65ed86506f6e5da&r=0.0&ID='+ban_kuai[iii]+'">'
+  }
+}
+</script>
+<body>
+</body>

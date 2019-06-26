@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <title>HOME</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+    body {
+        background-color:#000;
+        font-family:Helvetica;
+        color:#fff;
+        font-size:1em;
+    }
+    .button {
+        background-color: #0700D9;
+        color: white;
+        border-style: solid;
+        text-align: center;
+        display: inline-block;
+        font-weight:bold;
+        font-size:0.7em;
+    }
+    .inputtext {
+        width:300px;
+        background-color: #4A4A4A;
+        border: none;
+        color:#fff
+    }
+    .label {
+        font-weight:bold;
+        font-size:0.7em;
+        display:table-cell;
+    }
+    .table-div{display:table;margin-left:auto;margin-right:auto;border-collapse:collapse;}
+    .tr-div{display:table-row;}
+    .td-div{display:table-cell;width:160px;height:200px;text-align:center;vertical-align:middle;overflow:hidden;text-overflow-multiline:ellipsis;border:0.1em solid #aaa;}
+    a { text-decoration:none;font:32px STHeiti;color:#fff;width:160px;height:200px;display:block;}
+    </style>
+    <script>
+var json = {% raw links_dict %};var div_table;
+function show_links() {
+    var iii = 0;
+    var coloum_num = parseInt(window.innerWidth/160); //parseInt(document.documentElement.clientWidth/160);
+    var color=['#0700D9', '#CBA81B', '#4A4A4A', '#55330D', '#FE8811', '#D94CE9', '#00CB22', '#00A98D', '#FE5A5A', '#5400B3', '#53d291','#44d1e1', '#669254', '#c4ac92',
+        '#55c744','#e96208','#3307f4','#f3b20d','#9f5924',];
+    var div_tr,url_tmp;
+    div_table = document.getElementById("div_table");
+    for(var key in json) {
+        if (iii % coloum_num == 0) {
+            div_tr = document.createElement('div');
+            div_tr.className = 'tr-div';
+            div_table.appendChild(div_tr);
+        }
+        var div_td = document.createElement('div');
+        div_td.className = 'td-div';
+        div_td.style.backgroundColor = color[iii % color.length];
+        div_td.key = key;
+        try {
+            url_tmp=new URL(key);
+            div_td.innerHTML = '<a href="' + key + '" target="_blank">' +'<img style="height: 50%; width: 100%; object-fit: contain" src="'+url_tmp.origin+'/favicon.ico">' 
+            + json[key].substr(0,16) + '</a>';
+        }
+        catch(err) {
+            div_td.innerHTML = '<a href="' + key + '" target="_blank">' + '<span class="td-div">' + json[key] + '</span>' + '</a>';
+        }
+        div_tr.appendChild(div_td);
+        iii = iii + 1;
+    }
+}
+window.onresize = function(){
+    while(div_table.hasChildNodes()) {
+        div_table.removeChild(div_table.firstChild);
+    }
+    show_links();
+};
+
+window.onload = show_links;
+    </script>
+</head>
+<body>
+    <div id="div_table" class="table-div">
+    </div>
+</body>
