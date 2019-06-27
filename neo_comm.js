@@ -261,7 +261,7 @@ function create_tr_stock(url,table, info_str, s_type, sina_id) {
 }
 
 function stock_info_from_qq(url,table, stock_list, gOnlyShowFollowed) {
-    var script_url = 'http://qt.gtimg.cn/q=';
+    var script_url = 'https://qt.gtimg.cn/q=';
     for (var iii=0; iii<stock_list.length;iii++) {
         script_url = script_url+stock_list[iii]+',';
     }
